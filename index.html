@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 	<!-- Ref: https://getbootstrap.com/docs/4.0/getting-started/introduction/ -->
-	<title>Hello, world!</title>
+	<title>Hello, Chatbot!</title>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,9 +16,6 @@
 			padding-top: 50px;
 			padding-bottom: 50px;
 		}
-/* 		ul {
-			overflow-y: scroll;
-		} */
 		/* hide scrollbar in Chrome */
 		::-webkit-scrollbar {
 			display: none;
@@ -30,39 +27,47 @@
 		<div class="container-fluid">
 			<!-- Navigation bar as a heading -->
 			<nav class="row navbar fixed-top navbar-dark bg-dark">
-				<span class="navbar-brand ml-2 mb-0 h1">Eliza Chatbot</span>
+				<span class="navbar-brand ml-2 mb-0 h1">WebChatbot</span>
 			</nav>
 
-			<ul class="row list-group" id="displayUserMessage">
-
-			</ul>
-
+			<ul class="row list-group" id="displayUserMessage"></ul>
+			
 			<!-- Form as a footer-->
-			<form class="row fixed-bottom text-light bg-dark">
+			<form class="row fixed-bottom text-light bg-dark" id="myform">
 				<input class="form-control mx-4 my-2" type="text" id="inputUserMessage" placeholder="Type a message">
 			</form>
 		</div>
 
-	<!-- Optional JavaScript -->
-	<script>
-		// get the user input value and create a node		
-		var inVal = document.getElementById("inputUserMessage");
-		var li = document.createElement("li");
-		var node = document.createTextNode(inVal.innerHTML);
-		li.appendChild(node);
-		
-		// passing the node in order to display
-		var outVal = document.getElementById("displayUserMessage");
-		outVal.appendChild(li);
-		
-		
-		
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
-	</script>
+		<!-- Optional JavaScript -->
+		<script>
+			// get the user input value and create a node		
+			var outVal = document.getElementById("displayUserMessage");
+			var inVal = document.getElementById("inputUserMessage");
 
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+			$("#myform").submit(function(event){
+				event.preventDefault();
+				bot();
+
+				// clean up the input text box
+				inVal.value = "";
+			});
+
+			function bot() {
+				var liNode = document.createElement("li");
+				liNode.setAttribute("class", "list-group-item text-right");
+				liNode.setAttribute("style", "background-color: rgba(175, 243, 255, 0.18); border-color: rgba(120, 120, 120, 0.15);");
+				var txtNode = document.createTextNode(inVal.value);
+
+				// append a list
+				liNode.appendChild(txtNode);
+				outVal.appendChild(liNode);
+			}
+		</script>
+
 	</body>
 </html>
