@@ -6,14 +6,14 @@ Module: Data Representation.
 ##### This repository contains some codes written in the programming language Go.
 ##### The author is Yongjin Kim, a Student at GMIT.
 ---
-This project is to learn the fundamentals of creating a web application in Go. 
+This project is to create a chatbot web application in Go. Users will be able to visit the web application through their browser, type in sentences such as “Hi, my name is John.” and the web application will reply with sentences such as “Hello John, how are you?” You are free to use your artistic license in creating the chatbot, such as by giving it a certain type of personality, but you should be guided by the ELIZA program.
 
 ## How to clone
 1. Open **Git Bash**.
 2. Change the current working directory to the location where you want the cloned directory to be made.
-3. Type 'git clone', and then paste the URL `https://github.com/kentkim84/GoLangWebAppProject.git` or `git@github.com:kentkim84/GoLangWebAppProject.git`
+3. Type 'git clone', and then paste the URL `https://github.com/kentkim84/ElizaChatBot.git` or `git@github.com:kentkim84/ElizaChatBot.git`
 ```
-git clone https://github.com/kentkim84/GoLangWebAppProject.git
+git clone https://github.com/kentkim84/ElizaChatBot.git
 ```
 ## Coding Standards
 // Version 0.2 using C standards
