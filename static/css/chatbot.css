@@ -1,0 +1,8 @@
+body {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+/* hide scrollbar in Chrome */
+::-webkit-scrollbar {
+    display: none;
+}

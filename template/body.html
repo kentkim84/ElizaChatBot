@@ -1,0 +1,28 @@
+{{define "body"}}
+<div class="container-fluid">
+    {{block "navbar" .}}{{end}}
+    {{block "main" .}}{{end}}
+    {{block "form" .}}{{end}}
+</div>
+{{end}}
+
+{{define "navbar"}}
+<!-- Navigation bar as a heading -->
+<nav class="row navbar fixed-top navbar-dark bg-dark">
+    <!-- <span class="navbar-brand ml-2 mb-0 h1">WebChatbot</span> -->
+    <span class="navbar-brand ml-2 mb-0 h1">WebChatbot</span>
+</nav>
+{{end}}
+
+{{define "main"}}
+<ul class="row list-group" id="displayMessage">
+
+</ul>
+{{end}}
+
+{{define "form"}}
+<form class="row fixed-bottom text-light bg-dark" id="myForm" action="http://localhost:8080">
+    <input class="form-control mx-4 my-2" type="text" id="inputUserMessage" name="message" placeholder="Type a message">
+    <input type="submit" style="display:none">
+</form>
+{{end}}
