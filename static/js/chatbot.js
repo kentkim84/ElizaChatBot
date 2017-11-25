@@ -13,21 +13,16 @@ $("#myForm").submit(function(event){
     $.ajax({
         type: "POST",
         url: $(this).attr("action"),
-        data: $('#myForm').serialize(), // serializes the form's elements.
-        success: function(data)
-        {
-            console.log('Data sent');
-        },
-        error: function (data) {
-            console.log('An error occurred.');
-            console.log(data);
-        }
+        data: $('#myForm').serialize() // serializes the form's elements.
     }).done(function(data){
         // chatbot perspective
         console.log('Done: '+data);
-        /* classAttr = "list-group-item text-left";
+        var regex = /(<([^>]+)>)/
+        ,   body = data
+        ,   result = body.replace(regex, "");        
+        classAttr = "list-group-item text-left";
         styleAttr = "background-color: rgba(243, 175, 180, 0.18); border-color: rgba(120, 120, 120, 0.15);";
-        botMachine(response, classAttr, styleAttr); */
+        botMachine(result, classAttr, styleAttr);
     });
     // clean up the input text box
     var form = document.getElementById("myForm");

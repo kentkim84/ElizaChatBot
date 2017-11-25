@@ -1,4 +1,3 @@
-{{define "index"}}
 <html lang="en">
 	<head>
 	<!-- Ref: https://getbootstrap.com/docs/4.0/getting-started/introduction/ -->
@@ -20,10 +19,12 @@
 				<span class="navbar-brand ml-2 mb-0 h1">WebChatbot</span>
 			</nav>
 
-			<ul class="row list-group" id="displayMessage"></ul>
+			<ul class="row list-group" id="displayMessage">
+				<li class='list-group-item text-left' style='background-color: rgba(243, 175, 180, 0.18); border-color: rgba(120, 120, 120, 0.15);'>Hi I am Chatbot! Tell me something.</li>
+			</ul>
 
 			<!-- Form as a footer-->
-			<form class="row fixed-bottom text-light bg-dark" id="myForm" action="/">
+			<form class="row fixed-bottom text-light bg-dark" id="myForm" action="/" method="POST">
 				<input class="form-control mx-4 my-2" type="text" id="inputUserMessage" name="message" placeholder="Type a message">
 				<input type="submit" style="display:none">
 			</form>
@@ -35,8 +36,6 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
 		<!-- Custom JavaScript -->
-		<script src="./static/js/chatbot.js"></script>
-
+		<script src="./static/js/chatbot.js"></script>		
 	</body>
 </html>
-{{end}}

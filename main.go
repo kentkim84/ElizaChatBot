@@ -11,7 +11,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	"fmt"
+	//"fmt"
 	//"io"
 )
 
@@ -151,10 +151,15 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil { // if there is an error
 		  log.Print("template parsing error: ", err) // log error message
 	}
-	t.ExecuteTemplate(w, "index", conversation)
-	fmt.Fprintf(w, "%s", "<li class='list-group-item text-left' style='background-color: rgba(243, 175, 180, 0.18); border-color: rgba(120, 120, 120, 0.15);'>"+response+"</li>")
-	fmt.Println("conversation:", conversation)
-	
+	//t.ExecuteTemplate(w, "index", conversation)
+	t.Execute(w, conversation)
+	if len(message) > 0 {
+		/* fmt.Fprintf(w, "%s%s%s", "<li class='list-group-item text-left' style='background-color: rgba(243, 175, 180, 0.18); border-color: rgba(120, 120, 120, 0.15);'>",
+		response,
+		"</li>") */		
+	} else {
+		//fmt.Fprintf(w, "%s", "<li class='list-group-item text-left' style='background-color: rgba(243, 175, 180, 0.18); border-color: rgba(120, 120, 120, 0.15);'>Hi I am Chatbot! Tell me something.</li>")
+	}
 }
 
 /* func viewHandler(w http.ResponseWriter, r *http.Request) {
