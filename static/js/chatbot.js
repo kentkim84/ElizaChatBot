@@ -15,8 +15,7 @@ $("#myForm").submit(function(event){
         url: $(this).attr("action"),
         data: $('#myForm').serialize() // serializes the form's elements.
     }).done(function(data){
-        // chatbot perspective
-        //console.log('Done: '+data);
+        // chatbot perspective        
         var regex = /<.*>/gi;
         var body = data;
         var result = body.replace(regex, "");

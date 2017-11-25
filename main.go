@@ -12,7 +12,6 @@ import (
 	"strings"
 	"time"
 	"fmt"
-	//"io"
 )
 
 // Replacer is a struct with two elements: a compiled regular expression,
@@ -130,71 +129,23 @@ func (me *Eliza) RespondTo(input string) string {
 	return "I don't know what to say."
 }
 
-type Conversation struct {
-	Message string
-	Response string
-}
-
 func viewHandler(w http.ResponseWriter, r *http.Request) {	
 	eliza := ElizaFromFiles("data/responses.txt", "data/substitutions.txt")	
 	// read the value of input text box
 	r.ParseForm()
 	message := r.FormValue("message")   	
 	response := eliza.RespondTo(message)
-	
-	conversation := Conversation {
-		Message : message,
-		Response : response,		
-	}
 
 	t, err := template.ParseFiles("template/index.html")
 	if err != nil { // if there is an error
 		  log.Print("template parsing error: ", err) // log error message
 	}
-	//t.ExecuteTemplate(w, "index", conversation)
+
 	t.Execute(w, nil)
 	if len(message) > 0 {
 		fmt.Fprintf(w, "%s", response)
-		/* fmt.Fprintf(w, "%s%s%s", "<li class='list-group-item text-left' style='background-color: rgba(243, 175, 180, 0.18); border-color: rgba(120, 120, 120, 0.15);'>",
-		response,
-		"</li>") */		
-	} else {
-		//fmt.Fprintf(w, "%s", "<li class='list-group-item text-left' style='background-color: rgba(243, 175, 180, 0.18); border-color: rgba(120, 120, 120, 0.15);'>Hi I am Chatbot! Tell me something.</li>")
 	}
 }
-
-/* func viewHandler(w http.ResponseWriter, r *http.Request) {
-	//Parse url parameters passed, then parse the response packet for the POST body (request body)
-	fmt.Println("method:", r.Method)
-	r.ParseForm()
-
-	eliza := ElizaFromFiles("data/responses.txt", "data/substitutions.txt")	
-	// read the value of input text box
-	message := r.FormValue("message")   	
-	response := eliza.RespondTo(message)
-	MyPageVariables := PageVariables {
-		Message : message,
-		Response : response,		
-	}
-
-	fmt.Println("message:",message,", response:",response,)
-	fmt.Println(MyPageVariables,",", MyPageVariables.Message,",",MyPageVariables.Response)
-
-	// set up cookie
-	cookie := http.Cookie{Name: "target", Value: temp}
-	_, err := r.Cookie("target")
-	//fmt.Println(w, cookie)
-	if err == nil { // if there is no error
-		http.SetCookie(w, &cookie)
-	} 
-
-	// parse the template
-	t, err := template.ParseFiles("template/chatbot.html")
-	if err != nil { // if there is an error
-  		log.Print("template parsing error: ", err) // log error message
-	}
-	t.Execute(w, MyPageVariables)
-} */
 
 func main() {
 	rand.Seed(time.Now().UnixNano())
