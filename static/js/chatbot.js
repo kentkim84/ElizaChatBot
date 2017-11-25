@@ -16,13 +16,15 @@ $("#myForm").submit(function(event){
         data: $('#myForm').serialize() // serializes the form's elements.
     }).done(function(data){
         // chatbot perspective
-        console.log('Done: '+data);
-        var regex = /(<([^>]+)>)/
-        ,   body = data
-        ,   result = body.replace(regex, "");        
+        //console.log('Done: '+data);
+        var regex = /<.*>/gi;
+        var body = data;
+        var result = body.replace(regex, "");
+        console.log("before trim: " + result);
+        console.log("after trim: " + $.trim(result));
         classAttr = "list-group-item text-left";
         styleAttr = "background-color: rgba(243, 175, 180, 0.18); border-color: rgba(120, 120, 120, 0.15);";
-        botMachine(result, classAttr, styleAttr);
+        botMachine($.trim(result), classAttr, styleAttr);
     });
     // clean up the input text box
     var form = document.getElementById("myForm");
@@ -30,8 +32,8 @@ $("#myForm").submit(function(event){
 });
 
 function botMachine(output, classAttr, styleAttr) {
-    console.log("text in: "+output);
     // message perspective
+    console.log("data in"+output)
     var liNode = document.createElement("li");
     var txtNode = document.createTextNode(output);
     liNode.setAttribute("class", classAttr);

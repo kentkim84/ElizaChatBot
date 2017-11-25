@@ -11,7 +11,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	//"fmt"
+	"fmt"
 	//"io"
 )
 
@@ -152,8 +152,9 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
 		  log.Print("template parsing error: ", err) // log error message
 	}
 	//t.ExecuteTemplate(w, "index", conversation)
-	t.Execute(w, conversation)
+	t.Execute(w, nil)
 	if len(message) > 0 {
+		fmt.Fprintf(w, "%s", response)
 		/* fmt.Fprintf(w, "%s%s%s", "<li class='list-group-item text-left' style='background-color: rgba(243, 175, 180, 0.18); border-color: rgba(120, 120, 120, 0.15);'>",
 		response,
 		"</li>") */		
