@@ -142,7 +142,8 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	t.Execute(w, nil)
-	if len(message) > 0 {
+	if len(message) >= 0 && r.Method == "POST" {
+		// send the resonse
 		fmt.Fprintf(w, "%s", response)
 	}
 }
